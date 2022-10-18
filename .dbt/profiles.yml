@@ -1,0 +1,11 @@
+bmw_taxonomy_adherence:
+    target: dbt
+    outputs:
+      dbt: 
+        type: bigquery
+        method: service-account
+        project: bmw-taxonomy-adherence
+        dataset: dbt
+        location:  europe-west3 
+        threads: 1
+        keyfile: /Users/krasimirbambalov/Desktop/bmw-dbt.json

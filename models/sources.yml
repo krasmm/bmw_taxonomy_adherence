@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: adform
+    description: "source containing adform data"
+    database: bmw-taxonomy-adherence
+    schema: adform
+    tables:
+      - name: advertisers
+      
