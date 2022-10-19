@@ -13,7 +13,8 @@
 
 {% for dataset_id in datasets%}
 
-WITH table_details AS (
+{% endfor%}
+{# WITH table_details AS (
     SELECT 
         table_id,
         dataset_id,
@@ -43,4 +44,4 @@ storage_details AS (
 SELECT * 
 FROM table_details 
 LEFT JOIN storage_details 
-ON table_details.table_id=storage_details.table_name
+ON table_details.table_id=storage_details.table_name #}
