@@ -22,7 +22,7 @@ WITH table_details AS (
         CASE WHEN type = 1 THEN 'table' WHEN type = 2 THEN 'view' WHEN type = 3 THEN 'external' ELSE '?' END AS type,
         SUM(size_bytes)/pow(10,9) as size
     FROM 
-        {{ dataset_id }}.__TABLES__ 
+        {{project_id}}.{{dataset_id}}.__TABLES__ 
     GROUP BY 
         1,2,3,4,5),
 {% endfor %}     
