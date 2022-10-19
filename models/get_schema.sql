@@ -1,5 +1,5 @@
 {% set project_id = "`bmw-taxonomy-adherence`" %}
-{% set dataset_location = "`europe-west3`" %}
+{% set dataset_location = "`region-europe-west3`" %}
 
 {% set get_all_datasets %}
 
