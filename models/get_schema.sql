@@ -15,6 +15,7 @@
 
 {% for dataset_id in datasets%}
 SELECT {{ dataset_id }} FROM {{ datasets }}
+
 {% endfor %}  
 
 WITH table_details AS (
@@ -29,7 +30,7 @@ WITH table_details AS (
         {{project_id}}.{{dataset_id}}.__TABLES__ 
     GROUP BY 
         1,2,3,4,5),
-{% endfor %}     
+           
 storage_details AS (
     SELECT 
         table_name,
