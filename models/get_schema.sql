@@ -1,21 +1,23 @@
 {% set project_id = "`bmw-taxonomy-adherence`" %}
 {% set dataset_location = "`region-europe-west3`" %}
+{% set datasets = [] %}
 
 {% set get_all_datasets %}
-
     SELECT
         schema_name AS dataset_id
     FROM
         {{project_id}}.{{dataset_location}}.INFORMATION_SCHEMA.SCHEMATA
+{% do log("Query:" , info=True) %}
 {% endset %}
 
 {% set datasets = run_query(get_all_datasets)%}
-{% do log("Getting datasets" , info=True) %}
+{% do log("Getting datasets:" , info=True) %}
 
-{# {% for dataset_id in datasets%}
+{% for dataset_id in datasets%}
 SELECT {{ dataset_id }} FROM {{ datasets }}
-{% endfor %}   #}
-{# WITH table_details AS (
+{% endfor %}  
+
+WITH table_details AS (
     SELECT 
         table_id,
         dataset_id,
@@ -45,4 +47,4 @@ storage_details AS (
 SELECT * 
 FROM table_details 
 LEFT JOIN storage_details 
-ON table_details.table_id=storage_details.table_name #}
+ON table_details.table_id=storage_details.table_name
