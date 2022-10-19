@@ -10,10 +10,11 @@
 {% endset %}
 
 {% set datasets = run_query(get_all_datasets)%}
+{% do log("Getting datasets" , info=True) %}
 
-{% for dataset_id in datasets%}
+{# {% for dataset_id in datasets%}
 SELECT {{ dataset_id }} FROM {{ datasets }}
-{% endfor %}  
+{% endfor %}   #}
 {# WITH table_details AS (
     SELECT 
         table_id,
