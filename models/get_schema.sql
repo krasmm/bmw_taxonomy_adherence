@@ -4,7 +4,7 @@
 {% set get_all_datasets %}
 
     SELECT
-        schema_name
+        schema_name AS dataset_id
     FROM
         {{project_id}}.{{dataset_location}}.INFORMATION_SCHEMA.SCHEMATA
 {% endset %}
@@ -13,7 +13,7 @@
 
 {% for dataset_id in datasets%}
 SELECT {{ dataset_id }} FROM {{ datasets }}
-{% endfor%}
+{% endfor %}  
 {# WITH table_details AS (
     SELECT 
         table_id,
