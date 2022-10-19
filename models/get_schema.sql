@@ -7,13 +7,13 @@
         schema_name AS dataset_id
     FROM
         {{project_id}}.{{dataset_location}}.INFORMATION_SCHEMA.SCHEMATA
-{% do log("Query:" , info=True) %}
+{% do log("Querying schemata." , info=True) %}
 {% endset %}
 
 {% set datasets = run_query(get_all_datasets)%}
-{% do log("Getting datasets:" , info=True) %}
+{% do log("Getting datasets." , info=True) %}
 
-{% for dataset_id in datasets%}
+{% for dataset in datasets%}
 SELECT {{ dataset_id }} FROM {{ datasets }}
 
 {% endfor %}  
@@ -30,7 +30,7 @@ WITH table_details AS (
         {{project_id}}.{{dataset_id}}.__TABLES__ 
     GROUP BY 
         1,2,3,4,5),
-           
+
 storage_details AS (
     SELECT 
         table_name,
