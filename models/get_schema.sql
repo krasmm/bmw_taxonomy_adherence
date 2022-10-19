@@ -6,7 +6,7 @@
     SELECT
         schema_name
     FROM
-        {{project_id}}.{{dataset_location}}.INFORMATION_SCHEMA.SCHEMATA)
+        {{project_id}}.{{dataset_location}}.INFORMATION_SCHEMA.SCHEMATA
 {% endset %}
 
 {% set datasets = run_query(get_all_datasets)%}
@@ -25,7 +25,7 @@ WITH table_details AS (
         {{dataset_id}}.__TABLES__ 
     GROUP BY 
         1,2,3,4,5),
-|{% endfor %}     
+{% endfor %}     
 storage_details AS (
     SELECT 
         table_name,
