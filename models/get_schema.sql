@@ -11,6 +11,7 @@
 {% endset %}
 
 {% set datasets = run_query(get_all_datasets)%}
+{% do datasets.print_table()%}
 {% do log("Getting datasets." , info=True) %}
 
 
