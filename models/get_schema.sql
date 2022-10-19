@@ -10,8 +10,10 @@
 {% do log("Querying schemata." , info=True) %}
 {% endset %}
 
-{% set datasets = run_query(get_all_datasets)%}
+{% set datasets = dbt_utils.get_column_values(table=run_query(get_all_datasets))%}
 {% do log("Getting datasets." , info=True) %}
+
+
 
 {% for dataset in datasets%}
 SELECT {{ dataset }} FROM {{ datasets }}
