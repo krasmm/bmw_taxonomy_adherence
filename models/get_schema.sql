@@ -25,6 +25,7 @@ WITH table_details AS (
         {{dataset_id}}.__TABLES__ 
     GROUP BY 
         1,2,3,4,5),
+|{% endfor %}     
 storage_details AS (
     SELECT 
         table_name,
