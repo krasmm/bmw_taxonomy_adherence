@@ -12,7 +12,7 @@
 {% set datasets = run_query(get_all_datasets)%}
 
 {% for dataset_id in datasets%}
-
+SELECT {{ dataset_id }} FROM {{ datasets }}
 {% endfor%}
 {# WITH table_details AS (
     SELECT 
