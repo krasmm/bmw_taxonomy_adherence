@@ -11,7 +11,7 @@
 {% endset %}
 
 {% set datasets = dbt_utils.get_column_values(table=run_query(get_all_datasets))%}
-{% print {{ datasets }} %}
+{% print({{datasets}}) %}
 {% do log("Getting datasets." , info=True) %}
 
 
