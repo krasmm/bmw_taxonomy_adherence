@@ -7,21 +7,23 @@
         schema_name AS dataset_id
     FROM
         {{project_id}}.{{dataset_location}}.INFORMATION_SCHEMA.SCHEMATA
-{% do log("Querying schemata." , info=True) %}
 {% endset %}
+{% do log("Querying schemata." , info=True) %}
+{% set results = run_query(get_all_datasets)%}
 
-{% set datasets = run_query(get_all_datasets)%}
-{% do datasets.print_table()%}
 {% do log("Getting datasets." , info=True) %}
+{% if execute %}
+{% set datasets = results.columns[0].values() %}
+{% else %}
+{% set datasets = [] %}
+{% endif %}
+{% do log("Printing table." , info=True) %}
 
+{# {% for dataset in datasets %} #}
 
-
- {% for dataset in datasets%}
-SELECT {{ dataset }} FROM {{ datasets }}
-
-{% endfor %}   
-
-WITH table_details AS (
+SELECT * FROM datasets 
+{# WITH table_details AS (
+    
     SELECT 
         table_id,
         dataset_id,
@@ -32,8 +34,9 @@ WITH table_details AS (
     FROM 
         {{project_id}}.{{dataset}}.__TABLES__ 
     GROUP BY 
-        1,2,3,4,5),
-
+        1,2,3,4,5
+      ),
+ 
 storage_details AS (
     SELECT 
         table_name,
@@ -48,7 +51,8 @@ storage_details AS (
     GROUP BY 
         1,2
     )
+{% endfor %}
 SELECT * 
 FROM table_details 
 LEFT JOIN storage_details 
-ON table_details.table_id=storage_details.table_name
+ON table_details.table_id=storage_details.table_name #}
