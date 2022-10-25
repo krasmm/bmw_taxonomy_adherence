@@ -31,7 +31,7 @@ sources:
         +enabled: True
 
 vars:
-  project_id: 'bmw-taxonomy-adherence'
+  project_id: '`bmw-taxonomy-adherence`'
   dataset_location: '`region-europe-west3`'
 
 # Configuring models
