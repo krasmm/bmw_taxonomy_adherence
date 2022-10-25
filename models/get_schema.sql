@@ -19,11 +19,16 @@
 {% endif %}
 {% do log("Printing table." , info=True) %}
 
-{# {% for dataset in datasets %} #}
+{% set get_tables %}
+{% for dataset in datasets %}
+SELECT * FROM {{project_id}}.{{dataset}}.__TABLES__  
+{% endfor %}
+{% endset %}
+{% do log("Getting table data." , info=True) %}
+{% set table_results = run_query(get_tables)%}
 
-SELECT * FROM datasets 
 {# WITH table_details AS (
-    
+    {% for dataset in datasets %}    
     SELECT 
         table_id,
         dataset_id,
@@ -35,6 +40,7 @@ SELECT * FROM datasets
         {{project_id}}.{{dataset}}.__TABLES__ 
     GROUP BY 
         1,2,3,4,5
+    {% endfor %}
       ),
  
 storage_details AS (
@@ -50,8 +56,8 @@ storage_details AS (
         {{project_id}}.{{dataset_location}}.INFORMATION_SCHEMA.TABLE_STORAGE    
     GROUP BY 
         1,2
-    )
-{% endfor %}
+   )
+
 SELECT * 
 FROM table_details 
 LEFT JOIN storage_details 
