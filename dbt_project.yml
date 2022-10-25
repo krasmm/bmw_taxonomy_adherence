@@ -30,6 +30,9 @@ sources:
       adform:
         +enabled: True
 
+vars:
+  project_id: 'bmw-taxonomy-adherence'
+  dataset_location: '`region-europe-west3`'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
